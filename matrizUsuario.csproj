@@ -1,8 +1,76 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using System;
+using System.Diagnostics;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+namespace matrizUsuario
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = 0, m = 0;
+            string respuesta = "";
+            int fila = 0, columna = 0;
 
-</Project>
+            Console.WriteLine("indique la cantidad de filas de la matriz");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("indique la cantidad de columnas de la matriz");
+            m = int.Parse(Console.ReadLine());
+
+
+            string[,] matriz = new string[n, m];
+
+
+            for (int i = 0; i < matriz.GetLength(0); i++)//se llena la matriz
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    matriz[i, j] = "-";
+                }
+            }
+
+            for (int i = 0; i < matriz.GetLength(0); i++)//se imprime la matriz
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    Console.Write("|" + matriz[i, j]);
+                }
+                Console.Write("|\n");
+            }
+
+            Console.WriteLine("desea añadir una X? (s/n)");
+            respuesta = Console.ReadLine();
+
+            while(respuesta == "s")
+            {
+                Console.WriteLine("seleccione una fila");
+                fila = int.Parse(Console.ReadLine());
+                Console.WriteLine("seleccione una columna");
+                columna = int.Parse(Console.ReadLine());
+
+                if (matriz[fila, columna] == "-")
+                {
+                    matriz[fila, columna] = "x";
+                }
+                else
+                {
+                    Console.WriteLine("la posición" + " (" + fila + "," + columna + ") Está ocupada, Por favor selecciona otra posición");
+                }
+
+                for (int i = 0; i < matriz.GetLength(0); i++)//se imprime la matriz
+                {
+                    for (int j = 0; j < matriz.GetLength(1); j++)
+                    {
+                        Console.Write("|" + matriz[i, j]);
+                    }
+                    Console.Write("|\n");
+                }
+                Console.WriteLine("desea añadir una X? (s/n)");
+                respuesta = Console.ReadLine();
+            }
+
+            Console.WriteLine("gracias por participar");
+
+        }
+    }
+}
+
